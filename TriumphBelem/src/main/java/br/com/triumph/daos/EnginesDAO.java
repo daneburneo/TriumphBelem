@@ -1,6 +1,7 @@
 package br.com.triumph.daos;
 
 import br.com.triumph.models.Engine;
+import br.com.triumph.models.Motorcycle;
 
 
 import javax.persistence.EntityManager;
@@ -29,6 +30,16 @@ public class EnginesDAO {
         Engine engine = query.getSingleResult();
 
         return engine;
+    }
+
+    public List<Engine> getOneEngineByName(String engineName){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TriumphPU");
+        EntityManager manager = factory.createEntityManager();
+        TypedQuery<Engine> query = manager.createQuery("select m from Engines m where m.name like: nameQuery", Engine.class);
+        query.setParameter("nameQuery", "%" + engineName + "%"); //Enterpolaçao
+        List <Engine> engineList = query.getResultList();
+
+        return engineList;
     }
 
 

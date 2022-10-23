@@ -1,6 +1,7 @@
 package br.com.triumph.daos;
 
 
+import br.com.triumph.models.People;
 import br.com.triumph.models.Reserve;
 
 import javax.persistence.EntityManager;
@@ -28,6 +29,16 @@ public class ReservesDAO {
         Reserve reserves = query.getSingleResult();
 
         return reserves;
+    }
+
+    public List<Reserve> getOneReserveByName(String reserveName){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TriumphPU");
+        EntityManager manager = factory.createEntityManager();
+        TypedQuery<Reserve> query = manager.createQuery("select m from Reserve m where m.name like: nameQuery", Reserve.class);
+        query.setParameter("nameQuery", "%" + reserveName + "%"); //Interpolaçao
+        List <Reserve> reserveList = query.getResultList();
+
+        return reserveList;
     }
 
     public Reserve createReserve(Reserve newReserve) {

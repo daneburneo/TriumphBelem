@@ -47,6 +47,15 @@ public class ReserveService {
         return list;
     }
 
+    public Reserve getOneReserve(Integer id){
+
+        return reservesDAO.getOneReserve(id);
+    }
+
+    public List<Reserve> getOneReserveByName(String name){
+        return getOneReserveByName(name);
+    }
+
     public void deleteReserve(Integer id) {
 
         reservesDAO.deleteReserve(id);

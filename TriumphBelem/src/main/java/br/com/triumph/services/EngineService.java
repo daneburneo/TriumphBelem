@@ -2,6 +2,7 @@ package br.com.triumph.services;
 
 import br.com.triumph.daos.EnginesDAO;
 import br.com.triumph.models.Engine;
+import br.com.triumph.models.Motorcycle;
 
 import java.util.List;
 
@@ -42,6 +43,17 @@ public class EngineService {
 
         return list;
     }
+
+    public Engine getOneEngine(Integer id){
+
+        return enginesDAO.getOneEngine(id);
+    }
+
+
+    public List<Engine> getOneEngineByName(String name){
+        return  enginesDAO.getOneEngineByName(name);
+    }
+
 
     public void deleteEngine(Integer id) {
 

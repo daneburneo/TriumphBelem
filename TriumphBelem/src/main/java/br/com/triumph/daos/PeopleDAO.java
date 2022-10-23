@@ -1,5 +1,6 @@
 package br.com.triumph.daos;
 
+import br.com.triumph.models.Motorcycle;
 import br.com.triumph.models.People;
 
 import javax.persistence.EntityManager;
@@ -27,6 +28,16 @@ public class PeopleDAO {
         People people = query.getSingleResult();
 
         return people;
+    }
+
+    public List<People> getOnePeopleByName(String peopleName){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TriumphPU");
+        EntityManager manager = factory.createEntityManager();
+        TypedQuery<People> query = manager.createQuery("select m from People m where m.name like: nameQuery", People.class);
+        query.setParameter("nameQuery", "%" + peopleName + "%"); //Enterpolaçao
+        List <People> peopleList = query.getResultList();
+
+        return peopleList;
     }
 
     public People createPeople(People newPeople) {

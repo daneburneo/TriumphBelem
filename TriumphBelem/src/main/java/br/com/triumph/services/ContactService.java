@@ -16,6 +16,14 @@ public class ContactService {
         return list;
     }
 
+    public Contact getOneContact(Integer id){
+        return contactsDAO.getOneContact(id);
+    }
+
+    public List<Contact> getOneContactByname(String name){
+        return contactsDAO.getOneContactByName(name);
+    }
+
     public Contact updateContact(Integer id, Contact newContact) {
 
         if (validateContact(newContact) == false) {

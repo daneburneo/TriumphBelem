@@ -3,6 +3,7 @@ package br.com.triumph.resources; //nome de pacote sempre em minusculo.
 
 import br.com.triumph.models.Motorcycle;
 import br.com.triumph.services.MotorcycleService;
+import dtos.MotorcycleDto;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,19 +25,27 @@ public class MotorcyclesResources {
     }
 
     @GET
+    @Path("/query/name")
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public List<Motorcycle> getMotorcycleByName(@QueryParam("name") String name){
+
+        return motorcycleService.getMotorcycleByName(name);
+    }
+
+    @GET
     @Path("/{id}")
     @Produces(value = MediaType.APPLICATION_JSON)
     public Motorcycle getOneMotorcycle(@PathParam("id") Integer id) {
 
-        return null;
+        return motorcycleService.getOneMotorcycle(id);
     }
 
     @POST
     @Consumes(value = MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON)
-    public Motorcycle createMotorcycle(Motorcycle newMotorcycle) {
+    public Motorcycle createMotorcycle(MotorcycleDto motorcycleDTO) {
 
-        Motorcycle newMoto = motorcycleService.createMotorcycle(newMotorcycle);
+        Motorcycle newMoto = motorcycleService.createMotorcycle(motorcycleDTO);
 
         return newMoto;
     }

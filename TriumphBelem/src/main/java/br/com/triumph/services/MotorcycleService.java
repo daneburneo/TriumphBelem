@@ -1,12 +1,17 @@
 package br.com.triumph.services;
 
+import br.com.triumph.daos.EnginesDAO;
 import br.com.triumph.daos.MotorcyclesDAO;
+import br.com.triumph.models.Engine;
 import br.com.triumph.models.Motorcycle;
+import dtos.MotorcycleDto;
+
 import java.util.List;
 
 public class MotorcycleService {
 
     private MotorcyclesDAO motorcyclesDAO = new MotorcyclesDAO();
+    private EnginesDAO enginesDAO = new EnginesDAO();
 
     public Motorcycle updateMotorcycle(Integer id, Motorcycle motorcycle) {
 
@@ -21,20 +26,24 @@ public class MotorcycleService {
         return updatedMoto;
     }
 
-    public Motorcycle createMotorcycle(Motorcycle newMotorcycle) {
-        if (newMotorcycle.getDiscount() == null) {
-            throw new RuntimeException("Unable to update data, Please, go into the Store and try to update");
-        }
-        if (newMotorcycle.getName() == null) {
+    public Motorcycle createMotorcycle(MotorcycleDto motorcycleDto) {
+
+        if (motorcycleDto.getName() == null) {
             throw new RuntimeException("Unable to update data. The value cannot be 'Null'. PLease, enter a valid value");
-        }
-        if (newMotorcycle.getModel() == null) {
-            throw new RuntimeException("Unable to update data. The value cannot be 'Null'. PLease, enter a valid value");
+
         }
 
-        Motorcycle moto = motorcyclesDAO.createMotorcycle(newMotorcycle);
+        Motorcycle moto = new Motorcycle();
+        moto.setName(motorcycleDto.getName());
+        moto.setModel(motorcycleDto.getModel());
+        moto.setDiscount(motorcycleDto.getDiscount());
+        moto.setId(motorcycleDto.getId());
+        moto.setEngine(enginesDAO.getOneEngine(2));
+        moto.setPrice(motorcycleDto.getPrice());
+        moto.setTotal(motorcycleDto.getTotal());
+        Motorcycle motoReturn = motorcyclesDAO.createMotorcycle(moto);
 
-        return moto;
+        return motoReturn;
     }
 
     public List<Motorcycle> getAllMotorcycles() {
@@ -42,6 +51,15 @@ public class MotorcycleService {
         List<Motorcycle> list = motorcyclesDAO.getAllMotorcycles();
 
         return list;
+    }
+
+    public Motorcycle getOneMotorcycle (Integer id) {
+        return motorcyclesDAO.getOneMotorcycle(id);
+    }
+
+    public List<Motorcycle> getMotorcycleByName(String name) {
+
+        return motorcyclesDAO.getOneMotorcycleByName(name);
     }
 
     public void deleteMotorcycle(Integer id) {
@@ -66,8 +84,13 @@ public class MotorcycleService {
             validate = false;
         }
 
+
         return validate;
     }
+
+
+
+
 }
 
 

@@ -2,7 +2,6 @@ package br.com.triumph.resources;
 
 import br.com.triumph.models.Reserve;
 import br.com.triumph.services.ReserveService;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -27,7 +26,14 @@ public class ReservesResources {
     @Produces(value = MediaType.APPLICATION_JSON)
     public Reserve getOneReserve(@PathParam("id") Integer id) {
 
-        return null;
+        return reserveService.getOneReserve(id);
+    }
+
+    @GET
+    @Path("/query/name")
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public List<Reserve> getOneReserveByName(String name){
+        return reserveService.getOneReserveByName(name);
     }
 
     @POST

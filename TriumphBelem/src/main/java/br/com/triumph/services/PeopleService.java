@@ -47,6 +47,15 @@ public class PeopleService {
         return list;
     }
 
+    public People getOnePeople(Integer id){
+
+        return peopleDAO.getOnePeople(id);
+    }
+
+    public List<People> getOnePeopleByName(String name){
+        return peopleDAO.getOnePeopleByName(name);
+    }
+
     public void deletePeople(Integer id) {
 
         peopleDAO.deletePeople(id);

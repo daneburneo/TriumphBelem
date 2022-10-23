@@ -16,7 +16,7 @@ public class Motorcycle {
     @Column(name = "motorcycle_model")
     private String model;
     @Column(name = "motorcycle_price")
-    private Long price;
+    private Double price;
     @Column(name = "motorcycle_discount")
     private Double discount;
     @Column(name = "motorcycle_total")
@@ -55,11 +55,11 @@ public class Motorcycle {
         this.model = model;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -79,22 +79,21 @@ public class Motorcycle {
         this.engine = engine;
     }
 
-    public List<Reserve> getListOrder() {
-        return reserve;
-    }
+ //   public List<Reserve> getListOrder() {
+  //      return reserve;
+  //  }
 
-    public void setListOrder(List<Reserve> listReserve) {
-        this.reserve = listReserve;
-    }
+ //   public void setListOrder(List<Reserve> listReserve) {
+  //      this.reserve = listReserve;
+ //   }
 
     @ManyToOne //sempre o ultimo atributo de entidade
     @JoinColumn(name = "engine_fk")
     private Engine engine;
 
-    @ManyToMany
-    @JoinTable(name = "orders_motorcycles",
-            joinColumns = @JoinColumn(name = "motorcycle_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id"))
-    List<Reserve> reserve;
-
+ //   @ManyToMany
+ //   @JoinTable(name = "reserves_motorcycles",
+  //          joinColumns = @JoinColumn(name = "motorcycle_id"),
+ //           inverseJoinColumns = @JoinColumn(name = "order_id"))
+  //  private List<Reserve> reserve;
 }

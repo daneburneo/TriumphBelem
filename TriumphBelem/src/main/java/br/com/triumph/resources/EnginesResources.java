@@ -1,6 +1,7 @@
 package br.com.triumph.resources;
 
 import br.com.triumph.models.Engine;
+import br.com.triumph.models.Motorcycle;
 import br.com.triumph.services.EngineService;
 
 import javax.ws.rs.*;
@@ -23,11 +24,19 @@ public class EnginesResources {
     }
 
     @GET
+    @Path("/query/name")
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public List<Engine> getEngineByName(@QueryParam("name") String name){
+
+       return engineService.getOneEngineByName(name);
+    }
+
+    @GET
     @Path("/{id}")
     @Produces(value = MediaType.APPLICATION_JSON)
     public Engine getOneEngine(@PathParam("id") Integer id) {
 
-        return null;
+        return engineService.getOneEngine(id);
     }
 
     @POST

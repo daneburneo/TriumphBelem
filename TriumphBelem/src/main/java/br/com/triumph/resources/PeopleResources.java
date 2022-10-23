@@ -27,7 +27,14 @@ public class PeopleResources {
     @Produces(value = MediaType.APPLICATION_JSON)
     public People getOnePeople(@PathParam("id") Integer id) {
 
-        return null;
+        return peopleService.getOnePeople(id);
+    }
+
+    @GET
+    @Path("/query/name")
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public List<People> getOnePeopleByName(@QueryParam("name") String name){
+        return peopleService.getOnePeopleByName(name);
     }
 
     @POST

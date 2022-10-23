@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class MotorcyclesDAO {
@@ -46,6 +47,16 @@ public class MotorcyclesDAO {
         manager.getTransaction().commit();
 
         return motoToBeUpdated;
+    }
+
+    public List<Motorcycle> getOneMotorcycleByName(String motoName){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TriumphPU");
+        EntityManager manager = factory.createEntityManager();
+        TypedQuery<Motorcycle> query = manager.createQuery("select m from Motorcycle m where m.name like: nameQuery", Motorcycle.class);
+        query.setParameter("nameQuery", "%" + motoName + "%"); //Enterpolaçao
+        List <Motorcycle> motorcycleList = query.getResultList();
+
+        return motorcycleList;
     }
 
     public void deleteMotorcycle(Integer id){

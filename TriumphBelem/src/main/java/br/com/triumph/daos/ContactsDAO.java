@@ -27,6 +27,16 @@ public class ContactsDAO {
         return contact;
     }
 
+    public List<Contact> getOneContactByName(String name){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TriumphPU");
+        EntityManager manager = factory.createEntityManager();
+        TypedQuery<Contact> query = manager.createQuery("select m from Contact m where m.name like: nameQuery", Contact.class);
+        query.setParameter("nameQuery", name);
+        List<Contact> contactList = query.getResultList();
+
+        return contactList;
+    }
+
     public Contact createContact(Contact newContact) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TriumphPU");
         EntityManager manager = factory.createEntityManager();

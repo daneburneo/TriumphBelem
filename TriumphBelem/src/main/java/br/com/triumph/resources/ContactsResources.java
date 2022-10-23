@@ -1,6 +1,7 @@
 package br.com.triumph.resources;
 
 import br.com.triumph.models.Contact;
+import br.com.triumph.models.Reserve;
 import br.com.triumph.services.ContactService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -23,10 +24,13 @@ public class ContactsResources {
     @GET
     @Path("/{id}")
     @Produces(value = MediaType.APPLICATION_JSON)
-    public Contact getOneContact(@PathParam("id") Integer id) {
+    public Contact getOneContact(@PathParam("id") Integer id) { return contactService.getOneContact(id); }
 
-        return null;
-    }
+    @GET
+    @Path("/query/name")
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public List<Contact> getOneContactByName(String name){ return contactService.getOneContactByname(name); }
+
 
     @POST
     @Consumes(value = MediaType.APPLICATION_JSON)
