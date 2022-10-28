@@ -26,6 +26,8 @@ public class StoreService {
         moto.setDiscount(infoNewPromo.getDiscount());
         Motorcycle motorcycleUpdated = motorcyclesDAO.updateMotorcycle(moto);
 
+
+
         return motorcycleUpdated;
     }
 }

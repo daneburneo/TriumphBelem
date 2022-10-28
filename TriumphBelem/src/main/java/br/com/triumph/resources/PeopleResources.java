@@ -31,7 +31,7 @@ public class PeopleResources {
     }
 
     @GET
-    @Path("/query/name")
+    @Path("/query")
     @Produces(value = MediaType.APPLICATION_JSON)
     public List<People> getOnePeopleByName(@QueryParam("name") String name){
         return peopleService.getOnePeopleByName(name);

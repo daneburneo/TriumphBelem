@@ -25,7 +25,7 @@ public class MotorcyclesResources {
     }
 
     @GET
-    @Path("/query/name")
+    @Path("/query")
     @Produces(value = MediaType.APPLICATION_JSON)
     public List<Motorcycle> getMotorcycleByName(@QueryParam("name") String name){
 

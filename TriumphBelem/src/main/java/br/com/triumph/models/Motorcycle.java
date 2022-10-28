@@ -79,21 +79,22 @@ public class Motorcycle {
         this.engine = engine;
     }
 
- //   public List<Reserve> getListOrder() {
-  //      return reserve;
-  //  }
+   public List<Reserve> getListReserve() {
+       return reserve;
+   }
 
- //   public void setListOrder(List<Reserve> listReserve) {
-  //      this.reserve = listReserve;
- //   }
+   public void setListReserve(List<Reserve> listReserve) {
+        this.reserve = listReserve;
+   }
 
     @ManyToOne //sempre o ultimo atributo de entidade
     @JoinColumn(name = "engine_fk")
     private Engine engine;
 
- //   @ManyToMany
- //   @JoinTable(name = "reserves_motorcycles",
-  //          joinColumns = @JoinColumn(name = "motorcycle_id"),
- //           inverseJoinColumns = @JoinColumn(name = "order_id"))
-  //  private List<Reserve> reserve;
+    @ManyToMany
+    @JoinTable(name = "reserves_motorcycles",
+            joinColumns = @JoinColumn(name = "motorcycle_fk"),
+           inverseJoinColumns = @JoinColumn(name = "reserve_fk"))
+    private List<Reserve> reserve;
+
 }

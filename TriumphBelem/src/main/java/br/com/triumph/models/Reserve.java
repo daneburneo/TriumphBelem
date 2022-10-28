@@ -41,19 +41,18 @@ public class Reserve {
         this.price = price;
     }
 
-
-   // public List<Motorcycle> getListMotorcycles() {
-     //   return listMotorcycles;
-   // }
-
-   // public void setListMotorcycles(List<Motorcycle> listMotorcycle) {
-   //     this.listMotorcycles = listMotorcycle;
+    public List<Motorcycle> getListMotorcycles() {
+      return listMotorcycles;
     }
 
-    //@ManyToMany(mappedBy = "reserve")
- //   List<Motorcycle> listMotorcycles;
+    public void setListMotorcycles(List<Motorcycle> listMotorcycle) {
+        this.listMotorcycles = listMotorcycle;
+    }
 
-//}
+   @ManyToMany(mappedBy = "reserve")
+   List<Motorcycle> listMotorcycles;
+
+}
 
 
 

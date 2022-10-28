@@ -58,13 +58,18 @@ public class ContactService {
 
         boolean validate = true;
 
-        if (contact.getContact() != null) {
+        if (contact.getContact() == null) {
             validate = false;
         }
 
         if (contact.getId() == null) {
             validate = false;
         }
+
+        if(contact.getPerson() == null) {
+            validate = false;
+        }
+
         return validate;
     }
 }

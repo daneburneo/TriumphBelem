@@ -35,7 +35,7 @@ public class EnginesDAO {
     public List<Engine> getOneEngineByName(String engineName){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TriumphPU");
         EntityManager manager = factory.createEntityManager();
-        TypedQuery<Engine> query = manager.createQuery("select m from Engines m where m.name like: nameQuery", Engine.class);
+        TypedQuery<Engine> query = manager.createQuery("select m from Engine m where m.name like: nameQuery", Engine.class);
         query.setParameter("nameQuery", "%" + engineName + "%"); //Enterpolaçao
         List <Engine> engineList = query.getResultList();
 

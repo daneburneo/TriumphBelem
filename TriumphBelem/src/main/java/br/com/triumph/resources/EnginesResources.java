@@ -24,7 +24,7 @@ public class EnginesResources {
     }
 
     @GET
-    @Path("/query/name")
+    @Path("/query")
     @Produces(value = MediaType.APPLICATION_JSON)
     public List<Engine> getEngineByName(@QueryParam("name") String name){
 

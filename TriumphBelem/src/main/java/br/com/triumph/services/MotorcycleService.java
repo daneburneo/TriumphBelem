@@ -2,6 +2,7 @@ package br.com.triumph.services;
 
 import br.com.triumph.daos.EnginesDAO;
 import br.com.triumph.daos.MotorcyclesDAO;
+import br.com.triumph.daos.ReservesDAO;
 import br.com.triumph.models.Engine;
 import br.com.triumph.models.Motorcycle;
 import dtos.MotorcycleDto;
@@ -12,6 +13,7 @@ public class MotorcycleService {
 
     private MotorcyclesDAO motorcyclesDAO = new MotorcyclesDAO();
     private EnginesDAO enginesDAO = new EnginesDAO();
+    private ReservesDAO reservesDao = new ReservesDAO();
 
     public Motorcycle updateMotorcycle(Integer id, Motorcycle motorcycle) {
 
@@ -34,11 +36,13 @@ public class MotorcycleService {
         }
 
         Motorcycle moto = new Motorcycle();
+
         moto.setName(motorcycleDto.getName());
         moto.setModel(motorcycleDto.getModel());
         moto.setDiscount(motorcycleDto.getDiscount());
         moto.setId(motorcycleDto.getId());
         moto.setEngine(enginesDAO.getOneEngine(2));
+        moto.setListReserve(reservesDao.getAllReserves());
         moto.setPrice(motorcycleDto.getPrice());
         moto.setTotal(motorcycleDto.getTotal());
         Motorcycle motoReturn = motorcyclesDAO.createMotorcycle(moto);
